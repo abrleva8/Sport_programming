@@ -8,4 +8,4 @@ def gcd(x, y):
 
 a, b, c = map(int, input().split())
 g = gcd(a, b)
-print(1 if c % g == 0 else 0)
+print(int(c % g == 0))
