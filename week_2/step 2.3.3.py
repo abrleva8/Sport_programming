@@ -6,8 +6,8 @@ def gcd(x, y):
     return x if y == 0 else gcd(y, x % y)
 
 
-#@arr is array with inetger numerbs,
-#the method returns gcd all of numbers in @arr
+# @arr is array with inetger numbers,
+# the method returns gcd all of numbers in @arr
 def gcd_n(arr):
     result = arr[0]
     for el in arr:
