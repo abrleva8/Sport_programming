@@ -54,7 +54,6 @@ class PQKnight:
 
     def print_result(self):
         print(self.distances[self.end.x][self.end.y])
-        print(self.distances)
 
 
 if __name__ == '__main__':
