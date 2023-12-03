@@ -27,7 +27,7 @@ class Solution:
         self.n = 0
         self.m = 0
 
-    def readData(self):
+    def read_data(self):
         self.n, self.m = map(int, input().split())
         #  input()
         self.distances = [[False] * self.m for _ in range(self.n)]
@@ -47,13 +47,13 @@ class Solution:
             return True
         return False
 
-    def isWall(self, x, y):
+    def is_wall(self, x, y):
         return self.board[x][y] != '-' and self.board[x][y] != '|'
 
-    def setDistance(self, pair_x, pair_y, value=False):
+    def set_distance(self, pair_x, pair_y, value=False):
         self.distances[(pair_x - 1) // 2][(pair_y - 1) // 2] = value
 
-    def getDistance(self, pair_x, pair_y):
+    def get_distance(self, pair_x, pair_y):
         return self.distances[(pair_x - 1) // 2][(pair_y - 1) // 2]
 
     def bfs(self):
@@ -61,12 +61,12 @@ class Solution:
         q = deque()
         q.append(self.s)
 
-        self.setDistance(self.s[0], self.s[1])
+        self.set_distance(self.s[0], self.s[1])
 
         while q:
             currentCell = q.popleft()
             for dir in dirs:
-                if self.isWall(currentCell[0] + dir[0], currentCell[1] + dir[1]):
+                if self.is_wall(currentCell[0] + dir[0], currentCell[1] + dir[1]):
                     continue
                 tmpCell_x = currentCell[0]
                 tmpCell_y = currentCell[1]
@@ -75,10 +75,10 @@ class Solution:
                     if self.board[tmpCell_x][tmpCell_y] == 'D':
                         self.board[tmpCell_x][tmpCell_y] = 'E'
 
-                    if not self.getDistance(tmpCell_x, tmpCell_y):
+                    if not self.get_distance(tmpCell_x, tmpCell_y):
                         if (tmpCell_x * tmpCell_y - 1) % 2 == 0:
                             q.append((tmpCell_x, tmpCell_y))
-                            self.setDistance(tmpCell_x, tmpCell_y, True)
+                            self.set_distance(tmpCell_x, tmpCell_y, True)
 
                     tmpCell_x -= dir[0]
                     tmpCell_y -= dir[1]
@@ -86,15 +86,15 @@ class Solution:
                 tmpCell_x += dir[0]
                 tmpCell_y += dir[1]
 
-                if not self.getDistance(tmpCell_x, tmpCell_y):
+                if not self.get_distance(tmpCell_x, tmpCell_y):
                     if (tmpCell_x * tmpCell_y - 1) % 2 == 0:
                         q.append((tmpCell_x, tmpCell_y))
-                        self.setDistance(tmpCell_x, tmpCell_y, True)
+                        self.set_distance(tmpCell_x, tmpCell_y, True)
 
                     if self.board[tmpCell_x][tmpCell_y] == 'D':
                         self.board[tmpCell_x][tmpCell_y] = 'E'
 
-    def printBoard(self):
+    def print_board(self):
         for row in self.board:
             for el in row:
                 if el == 'D':
@@ -107,6 +107,6 @@ class Solution:
 
 
 solution = Solution()
-solution.readData()
+solution.read_data()
 solution.bfs()
-solution.printBoard()
+solution.print_board()
